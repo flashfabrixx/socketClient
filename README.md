@@ -1,10 +1,9 @@
 socketClient
 ============
 
-Example app written in Objective-C to communicate with a [Meteor](https://www.meteor.com) Server using [ObjectiveDDP](https://github.com/boundsj/ObjectiveDDP) and store data using Core Data for offline access and data operations.
+Example app written in Objective-C to communicate with a [Meteor Server](https://github.com/flashfabrixx/socketServer) using [ObjectiveDDP](https://github.com/boundsj/ObjectiveDDP) and Core Data to store and sync data for offline use.
 
 ======================
-
 #### Installation
 
 ````sh
@@ -22,3 +21,24 @@ cd socketClient
 pod install
 open socketClient.xcworkspace/
 ````
+
+Open the webapp at [http://localhost:3000](http://localhost:3000) and run the iOS app in the simulator. If you want to test the app on your device, make sure to update the server path in ``MeteorAgent.m`` with your hostname.
+
+======================
+#### Features
+
+- Create, update and delete simple posts
+- Webapp ([Server Repository](https://github.com/flashfabrixx/socketServer))
+- [ObjectiveDDP](https://github.com/boundsj/ObjectiveDDP) to communicate with websocket
+- Offline storage with Core Data and synchronisation
+
+======================
+#### Screenshot
+
+![image](https://dl.dropboxusercontent.com/u/629741/2014-12-16%2021.49.52.png)
+
+======================
+#### Licensing  
+MIT License.
+
+
