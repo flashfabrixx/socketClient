@@ -263,7 +263,6 @@
 				TargetAttributes = {
 					D815612C1A40A6D400EB945E = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = ADT3B9V7DN;
 					};
 					D81561451A40A6D400EB945E = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -479,7 +478,7 @@
 			baseConfigurationReference = 8833F17F65A8E105A3A1449B /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Marcel Bender (96QJ42LAQY)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = socketClient/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -491,7 +490,7 @@
 			baseConfigurationReference = E787C1EDC3CC9E53398A76ED /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Marcel Bender (96QJ42LAQY)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = socketClient/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
