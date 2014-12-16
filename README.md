@@ -22,7 +22,7 @@ pod install
 open socketClient.xcworkspace/
 ````
 
-Open the webapp at [http://localhost:3000](http://localhost:3000) and run the iOS app in the simulator. If you want to test the app on your device, make sure to update the server path in ``MeteorAgent.m`` with your hostname.
+Open the webapp at [http://localhost:3000](http://localhost:3000) and run the iOS app in the simulator. If you want to test the app on your device, make sure to update the server path in [MeteorAgent.m](https://github.com/flashfabrixx/socketClient/blob/master/socketClient/Controller/Agents/MeteorAgent.m#L11) with your hostname.
 
 ======================
 #### Features
