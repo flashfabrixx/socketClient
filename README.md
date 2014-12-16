@@ -33,6 +33,11 @@ Open the webapp at [http://localhost:3000](http://localhost:3000) and run the iO
 - Offline storage with Core Data and synchronisation
 
 ======================
+#### Screenshot
+
+![image](https://dl.dropboxusercontent.com/u/629741/2014-12-16%2021.49.52.png)
+
+======================
 #### Licensing  
 MIT License.
 
