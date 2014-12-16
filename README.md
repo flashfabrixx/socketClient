@@ -27,7 +27,7 @@ Open the webapp at [http://localhost:3000](http://localhost:3000) and run the iO
 ======================
 #### Features
 
-- Creating, updating and deleting simple posts
+- Create, update and delete simple posts
 - Webapp ([Server Repository](https://github.com/flashfabrixx/socketServer))
 - [ObjectiveDDP](https://github.com/boundsj/ObjectiveDDP) to communicate with websocket
 - Offline storage with Core Data and synchronisation
