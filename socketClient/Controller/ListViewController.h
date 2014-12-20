@@ -10,5 +10,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *statusLabel;
 
 - (IBAction)addButtonPressed:(id)sender;
+- (IBAction)logoutBtnPressed:(id)sender;
 
 @end

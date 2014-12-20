@@ -74,19 +74,38 @@ static CoreDataAgent *sharedInstance = nil;
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
-#pragma mark - Saving Support
+#pragma mark - Data Operation Support
 
 /// Save changes of NSManagedObjectContext
-- (void)saveContext
+- (void)saveContext:(NSManagedObjectContext *)context
 {
-    NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
-    if (managedObjectContext != nil) {
+    if (context != nil) {
         NSError *error = nil;
-        if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
+        if ([context hasChanges] && ![context save:&error]) {
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
             abort();
         }
     }
+}
+
+/// Resets Core Data to empty state
+- (void)resetContext:(NSManagedObjectContext *)context
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        NSError *error = nil;
+        for (NSEntityDescription *entity in [self managedObjectModel]) {
+            NSFetchRequest *fetchRequest = [NSFetchRequest new];
+            [fetchRequest setEntity:entity];
+            [fetchRequest setIncludesSubentities:NO];
+            NSArray *objects = [context executeFetchRequest:fetchRequest error:&error];
+            for (NSManagedObject *managedObject in objects) {
+                [context deleteObject:managedObject];
+            }
+        }
+        
+        BOOL success = [context save:&error];
+        if (!success) NSLog(@"Failed saving managed object context: %@", [error userInfo]);
+    }];
 }
 
 @end

@@ -1,4 +1,5 @@
 #import "CoreDataAgent.h"
+#import "MeteorAgent.h"
 #import "Post.h"
 #import "Post+Data.h"
 #import "Post+Network.h"
@@ -18,10 +19,14 @@
     post.message = [dictionary valueForKey:@"message"];
     post.updatedAt = [dictionary valueForKey:@"updatedAt"];
     post.deletedAt = [dictionary valueForKey:@"deletedAt"];
+    post.userId = [dictionary valueForKey:@"userId"];
 
     // Set default values when creating local object
     if (!post.postId) {
         post.postId = [[NSUUID UUID] UUIDString];
+    }
+    if (!post.userId) {
+        post.userId = [[MeteorAgent sharedInstance] meteorClient].userId;
     }
     if (!post.createdAt) {
         post.createdAt = [self unixTimestamp];
@@ -32,7 +37,7 @@
     if (!post.deletedAt || [post.deletedAt isEqualToNumber:@0]) {
         post.deletedAt = nil;
     }
-    NSLog(@"initPostWithData finished with data: %@", post);
+    //NSLog(@"initPostWithData finished with data: %@", post);
     return post;
 }
 
@@ -42,7 +47,7 @@
     NSNumber *deletedTimestamp = [dictionary valueForKey:@"deletedAt"];
     if (deletedTimestamp != nil && ![deletedTimestamp isEqualToNumber:@0]) {
         // Prevent findAndUpdate process by returning YES
-        NSLog(@"Post deleted on server. Deleting post locally.");
+        //NSLog(@"Post deleted on server. Deleting post locally.");
         [self findAndDeletePostWithData:dictionary inContext:context];
         return YES;
     } else {
@@ -52,7 +57,7 @@
         if (results.count == 0) {
             Post *newPost = [self initPostWithData:dictionary inContext:context];
             [self resetFlags:newPost];
-            [[CoreDataAgent sharedInstance] saveContext];
+            [[CoreDataAgent sharedInstance] saveContext:context];
             return YES;
         }
     }
@@ -64,7 +69,7 @@
     // Check if deletedAt property is set. If yes, delete object locally.
     NSNumber *deletedTimestamp = [dictionary valueForKey:@"deletedAt"];
     if (deletedTimestamp != nil && ![deletedTimestamp isEqualToNumber:@0]) {
-        NSLog(@"Post deleted on server. Deleting post locally.");
+        //NSLog(@"Post deleted on server. Deleting post locally.");
         [self findAndDeletePostWithData:dictionary inContext:context];
         return YES;
     } else {
@@ -82,14 +87,14 @@
             BOOL localIsNewer = existingPost.updatedAt > [dictionary valueForKey:@"updatedAt"];
             
             if (hasBeenEdited && localIsNewer && !hasBeenDeleted) {
-                NSLog(@"Local post newer than received item, uploading local post.");
+                //NSLog(@"Local post newer than received item, uploading local post.");
                 [Post updatePost:existingPost isOfflineSync:NO inContext:context];
             } else {
-                NSLog(@"Local post is older, updating local post.");
+                //NSLog(@"Local post is older, updating local post.");
                 existingPost.message = [dictionary valueForKey:@"message"];
                 existingPost.updatedAt = [dictionary valueForKey:@"updatedAt"];
                 [self resetFlags:existingPost];
-                [[CoreDataAgent sharedInstance] saveContext];
+                [[CoreDataAgent sharedInstance] saveContext:context];
                 return YES;
             }
         }
@@ -105,7 +110,7 @@
     if (results.count == 1) {
         Post *existingPost = [results firstObject];
         [context deleteObject:existingPost];
-        [[CoreDataAgent sharedInstance] saveContext];
+        [[CoreDataAgent sharedInstance] saveContext:context];
         return YES;
     }
     return NO;
@@ -125,7 +130,7 @@
         } else {
             [Post resetFlags:post];
         }
-        [[CoreDataAgent sharedInstance] saveContext];
+        [[CoreDataAgent sharedInstance] saveContext:context];
     }];
 }
 
@@ -146,7 +151,7 @@
         } else {
             [Post resetFlags:post];
         }
-        [[CoreDataAgent sharedInstance] saveContext];
+        [[CoreDataAgent sharedInstance] saveContext:context];
     }];
 }
 
@@ -167,10 +172,10 @@
         if (error) {
             NSLog(@"Error deleting post %@ with error: %@", post, [error userInfo]);
         } else {
-            NSLog(@"Deleted post with response: %@", result);
+            //NSLog(@"Deleted post with response: %@", result);
             [context deleteObject:post];
         }
-        [[CoreDataAgent sharedInstance] saveContext];
+        [[CoreDataAgent sharedInstance] saveContext:context];
     }];
 }
 
@@ -242,12 +247,14 @@
                          @"message": post.message,
                          @"createdAt": post.createdAt,
                          @"updatedAt": post.updatedAt,
-                         @"deletedAt": post.deletedAt}];
+                         @"deletedAt": post.deletedAt,
+                         @"userId": post.userId}];
     } else {
         parameters = @[@{@"_id": post.postId,
                          @"message": post.message,
                          @"createdAt": post.createdAt,
-                         @"updatedAt": post.updatedAt}];
+                         @"updatedAt": post.updatedAt,
+                         @"userId": post.userId}];
     }
     return parameters;
 }
