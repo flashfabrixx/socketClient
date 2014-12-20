@@ -10,5 +10,6 @@
 @dynamic postId;
 @dynamic updatedAt;
 @dynamic deletedAt;
+@dynamic userId;
 
 @end

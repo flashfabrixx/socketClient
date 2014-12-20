@@ -11,5 +11,6 @@
 @property (nonatomic, retain) NSString * postId;
 @property (nonatomic, retain) NSNumber * updatedAt;
 @property (nonatomic, retain) NSNumber * deletedAt;
+@property (nonatomic, retain) NSString * userId;
 
 @end

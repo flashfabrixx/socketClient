@@ -10,6 +10,7 @@
 		2686DFA04B7CB14F5C4A68CD /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BCBA48CB92138DCB3A070EC7 /* libPods.a */; };
 		D81561331A40A6D400EB945E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D81561321A40A6D400EB945E /* main.m */; };
 		D815614D1A40A6D400EB945E /* socketClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D815614C1A40A6D400EB945E /* socketClientTests.m */; };
+		D82B9FF61A430FDC00BA3A96 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D82B9FF51A430FDC00BA3A96 /* LoginViewController.m */; };
 		D83C9B501A40A77400CB5D5D /* CoreDataAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = D83C9B391A40A77400CB5D5D /* CoreDataAgent.m */; };
 		D83C9B511A40A77400CB5D5D /* MeteorAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = D83C9B3B1A40A77400CB5D5D /* MeteorAgent.m */; };
 		D83C9B521A40A77400CB5D5D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D83C9B3D1A40A77400CB5D5D /* AppDelegate.m */; };
@@ -21,6 +22,7 @@
 		D83C9B581A40A77400CB5D5D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D83C9B4B1A40A77400CB5D5D /* LaunchScreen.xib */; };
 		D83C9B591A40A77400CB5D5D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D83C9B4D1A40A77400CB5D5D /* Main.storyboard */; };
 		D83C9B5A1A40A77400CB5D5D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D83C9B4F1A40A77400CB5D5D /* Images.xcassets */; };
+		D8AAA8671A45E84300926991 /* Account.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8AAA8661A45E84300926991 /* Account.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +44,8 @@
 		D81561461A40A6D400EB945E /* socketClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = socketClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D815614B1A40A6D400EB945E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D815614C1A40A6D400EB945E /* socketClientTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = socketClientTests.m; sourceTree = "<group>"; };
+		D82B9FF41A430FDC00BA3A96 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		D82B9FF51A430FDC00BA3A96 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		D83C9B381A40A77400CB5D5D /* CoreDataAgent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataAgent.h; sourceTree = "<group>"; };
 		D83C9B391A40A77400CB5D5D /* CoreDataAgent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataAgent.m; sourceTree = "<group>"; };
 		D83C9B3A1A40A77400CB5D5D /* MeteorAgent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeteorAgent.h; sourceTree = "<group>"; };
@@ -60,6 +64,8 @@
 		D83C9B4C1A40A77400CB5D5D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		D83C9B4E1A40A77400CB5D5D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D83C9B4F1A40A77400CB5D5D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		D8AAA8661A45E84300926991 /* Account.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Account.storyboard; sourceTree = "<group>"; };
+		D8AAA86A1A4601CE00926991 /* socketClient-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "socketClient-Prefix.pch"; sourceTree = SOURCE_ROOT; };
 		E787C1EDC3CC9E53398A76ED /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -135,6 +141,7 @@
 			children = (
 				D81561311A40A6D400EB945E /* Info.plist */,
 				D81561321A40A6D400EB945E /* main.m */,
+				D8AAA86A1A4601CE00926991 /* socketClient-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			path = socketClient;
@@ -163,6 +170,8 @@
 				D83C9B371A40A77400CB5D5D /* Agents */,
 				D83C9B3C1A40A77400CB5D5D /* AppDelegate.h */,
 				D83C9B3D1A40A77400CB5D5D /* AppDelegate.m */,
+				D82B9FF41A430FDC00BA3A96 /* LoginViewController.h */,
+				D82B9FF51A430FDC00BA3A96 /* LoginViewController.m */,
 				D83C9B3E1A40A77400CB5D5D /* ListViewController.h */,
 				D83C9B3F1A40A77400CB5D5D /* ListViewController.m */,
 			);
@@ -206,6 +215,7 @@
 			isa = PBXGroup;
 			children = (
 				D83C9B4B1A40A77400CB5D5D /* LaunchScreen.xib */,
+				D8AAA8661A45E84300926991 /* Account.storyboard */,
 				D83C9B4D1A40A77400CB5D5D /* Main.storyboard */,
 				D83C9B4F1A40A77400CB5D5D /* Images.xcassets */,
 			);
@@ -296,6 +306,7 @@
 			files = (
 				D83C9B5A1A40A77400CB5D5D /* Images.xcassets in Resources */,
 				D83C9B581A40A77400CB5D5D /* LaunchScreen.xib in Resources */,
+				D8AAA8671A45E84300926991 /* Account.storyboard in Resources */,
 				D83C9B591A40A77400CB5D5D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -351,6 +362,7 @@
 				D83C9B531A40A77400CB5D5D /* ListViewController.m in Sources */,
 				D83C9B521A40A77400CB5D5D /* AppDelegate.m in Sources */,
 				D83C9B511A40A77400CB5D5D /* MeteorAgent.m in Sources */,
+				D82B9FF61A430FDC00BA3A96 /* LoginViewController.m in Sources */,
 				D83C9B571A40A77400CB5D5D /* Post.m in Sources */,
 				D83C9B561A40A77400CB5D5D /* Post+Network.m in Sources */,
 				D83C9B501A40A77400CB5D5D /* CoreDataAgent.m in Sources */,
@@ -434,6 +446,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -468,6 +481,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -479,6 +493,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/socketClient-Prefix.pch";
 				INFOPLIST_FILE = socketClient/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -491,6 +506,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/socketClient-Prefix.pch";
 				INFOPLIST_FILE = socketClient/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";

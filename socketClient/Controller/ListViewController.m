@@ -3,6 +3,7 @@
 
 // Controller
 #import "ListViewController.h"
+#import "LoginViewController.h"
 
 // Data Handler
 #import "CoreDataAgent.h"
@@ -20,35 +21,45 @@
     [super viewDidLoad];
     
     self.statusLabel.text = @"Connecting …";
-
+    [self checkConnectionState];
+    
     self.context = [[CoreDataAgent sharedInstance] managedObjectContext];
     self.fetchedResultsController = [self fetchedResultsController];
     self.fetchedResultsController.delegate = self;
     [self.tableView reloadData];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reportConnection) name:MeteorClientDidConnectNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reportConnectionReady) name:MeteorClientConnectionReadyNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reportDisconnection) name:MeteorClientDidDisconnectNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkConnectionState) name:MeteorClientDidConnectNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkConnectionState) name:MeteorClientConnectionReadyNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkConnectionState) name:MeteorClientDidDisconnectNotification object:nil];
 }
 
 #pragma mark | Connection
 
-- (void)reportConnection {
-    NSLog(@"[CONNECTION] Connecting to server");
-    self.statusLabel.text = @"Connecting …";
-    self.statusLabel.textColor = [UIColor colorWithRed:0.969 green:0.792 blue:0.094 alpha:1.000];
-}
-
-- (void)reportConnectionReady {
-    NSLog(@"[CONNECTION] Connected to server");
-    self.statusLabel.text = @"Connected";
-    self.statusLabel.textColor = [UIColor colorWithRed:0.153 green:0.682 blue:0.376 alpha:1.000];
-}
-
-- (void)reportDisconnection {
-    NSLog(@"[CONNECTION] No connection to server available");
-    self.statusLabel.text = @"Not connected";
-    self.statusLabel.textColor = [UIColor redColor];
+- (void)checkConnectionState
+{
+    SRReadyState state = [[MeteorAgent sharedInstance] meteorClient].ddp.webSocket.readyState;
+    NSString *authStateString = [[MeteorAgent sharedInstance] stringFromAuthState];
+    
+    switch (state) {
+        case SR_CLOSED:
+            self.statusLabel.text = [NSString stringWithFormat:@"%@, %@", @"Not connected", authStateString];
+            self.statusLabel.textColor = [UIColor redColor];
+            break;
+        case SR_CONNECTING:
+            self.statusLabel.text = [NSString stringWithFormat:@"%@, %@", @"Connecting …", authStateString];
+            self.statusLabel.textColor = [UIColor colorWithRed:0.969 green:0.792 blue:0.094 alpha:1.000];
+            break;
+        case SR_CLOSING:
+            self.statusLabel.text = [NSString stringWithFormat:@"%@, %@", @"Not connected", authStateString];
+            self.statusLabel.textColor = [UIColor redColor];
+            break;
+        case SR_OPEN:
+            self.statusLabel.text = [NSString stringWithFormat:@"%@, %@", @"Connected", authStateString];
+            self.statusLabel.textColor = [UIColor colorWithRed:0.153 green:0.682 blue:0.376 alpha:1.000];
+            break;
+        default:
+            break;
+    }
 }
 
 #pragma mark - NSFetchedResultsController
@@ -287,6 +298,22 @@
     [alertController addAction:sendButton];
     
     [self presentViewController:alertController animated:YES completion:nil];
+}
+
+- (IBAction)logoutBtnPressed:(id)sender {
+    [self switchToLoginView];
+}
+
+- (void)switchToLoginView
+{
+    [[[MeteorAgent sharedInstance] meteorClient] logout];
+    [[MeteorAgent sharedInstance] resetConnectionCredentials];
+    [[CoreDataAgent sharedInstance] resetContext:self.context];
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Account" bundle:[NSBundle mainBundle]];
+    UINavigationController *nc = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewControllerNC"];
+    nc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self presentViewController:nc animated:YES completion:nil];
 }
 
 @end

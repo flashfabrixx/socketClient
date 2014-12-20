@@ -4,11 +4,13 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
+        <!--ListViewControllerNC-->
         <scene sceneID="dep-Cv-l1c">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="IcA-fi-WxP" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mE1-n0-qUA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController storyboardIdentifier="ListViewControllerNC" title="ListViewControllerNC" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="IcA-fi-WxP" userLabel="ListViewControllerNC" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="7E1-Ri-D6x"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Aw2-Wz-i0c">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -18,9 +20,8 @@
                         <segue destination="oUA-If-gQr" kind="relationship" relationship="rootViewController" id="gn9-Sg-UaR"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mE1-n0-qUA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="163" y="421"/>
+            <point key="canvasLocation" x="-196" y="445"/>
         </scene>
         <!--ListViewController-->
         <scene sceneID="ZHX-0E-EfG">
@@ -59,8 +60,13 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="kc7-2T-YG9">
                         <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="trash" id="CFc-3V-O5q">
+                            <connections>
+                                <action selector="logoutBtnPressed:" destination="oUA-If-gQr" id="7NT-6t-VBP"/>
+                            </connections>
+                        </barButtonItem>
                         <view key="titleView" contentMode="scaleToFill" id="aie-g5-b1q">
-                            <rect key="frame" x="58" y="6" width="204" height="33"/>
+                            <rect key="frame" x="59" y="6" width="202" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Posts" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LuF-J7-bhw">
@@ -91,7 +97,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6sv-cq-gci" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="561" y="421"/>
+            <point key="canvasLocation" x="202" y="445"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

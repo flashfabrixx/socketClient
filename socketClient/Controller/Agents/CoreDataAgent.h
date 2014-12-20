@@ -8,7 +8,9 @@
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 + (id)sharedInstance;
-- (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
+
+- (void)saveContext:(NSManagedObjectContext *)context;
+- (void)resetContext:(NSManagedObjectContext *)context;
 
 @end
